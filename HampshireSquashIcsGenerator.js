@@ -76,7 +76,7 @@ function generateIcs(fixtures) {
         ics.push("DURATION:PT4H");
         ics.push("LOCATION:" + (fixture.isHome ? "Five Rivers Leisure Center" : fixture.address));
         ics.push("CATEGORIES:Squash");
-        ics.push("DESCRIPTION:Squash Match " + fixture.homeTeam + " vs " + fixture.awayTeam + "\\n " + fixture.date + " " + fixture.time + "\\n" + fixture.resultUrl);
+        ics.push("DESCRIPTION:Squash Match " + fixture.homeTeam + " vs " + fixture.awayTeam + "\\n " + fixture.date + " " + fixture.time + "\\n" + fixture.league + "\\n" + fixture.resultUrl);
         ics.push("BEGIN:VALARM");
         ics.push("TRIGGER:-PT3H");
         ics.push("ACTION:DISPLAY");
