@@ -1,4 +1,4 @@
-# Hampshire Squash Javascript Calendar Generator
+# Squash Javascript Calendar Generator
 
 Creates an .ics file from a Squash Team page on the Hampshire Squash website
 
