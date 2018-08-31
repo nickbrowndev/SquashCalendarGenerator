@@ -59,7 +59,7 @@ function generateIcs(fixtures) {
     var ics = []; 
     ics.push("BEGIN:VCALENDAR");
     ics.push("VERSION:2.0");
-    ics.push("PRODID:-//https://github.com/nickbrowndev/HampshireSquashCalendar");
+    ics.push("PRODID:-//https://github.com/nickbrowndev/SquashCalendarGenerator");
     jQuery.each(fixtures, function(index, fixture) {
         ics.push("BEGIN:VEVENT");
         var homeAway = fixture.isHome ? "H" : "A";
