@@ -63,21 +63,24 @@ function generateIcs(fixtures) {
     ics.push(getTimeZoneIcsInfo());
     jQuery.each(fixtures, function(index, fixture) {
         ics.push("BEGIN:VEVENT");
-        ics.push("UID:" + fixture.date+fixture.homeTeam+fixture.awayTeam.replace(" ", ""));
+        //ics.push("UID:" + fixture.date + (fixture.homeTeam+fixture.awayTeam).replace("\\s", ""));
+        ics.push("UID:" + fixture.resultUrl);
         ics.push("DTSTAMP:" + getTimeStamp());
         var homeAway = fixture.isHome ? "H" : "A";
         var team = fixture.isHome ? fixture.homeTeam : fixture.awayTeam;
         var opponent = fixture.isHome ? fixture.awayTeam : fixture.homeTeam;
-        ics.push("SUMMARY:" + replaceInString(EVENT_NAME_TEMPLATE, homeAway, team, opponent));
+        var summary = replaceInString(EVENT_NAME_TEMPLATE, homeAway, team, opponent);
+        ics.push("SUMMARY:" + summary);
         ics.push("STATUS:CONFIRMED");
         ics.push("DTSTART;"+TZID+":"+formatDate(fixture.date)+"T"+formatTime(fixture.time));
         ics.push("DURATION:PT4H");
         ics.push("LOCATION:" + (fixture.isHome ? "Five Rivers Leisure Center" : fixture.address));
         ics.push("CATEGORIES:Squash");
-        ics.push("DESCRIPTION:Squash Team Match " + fixture.homeTeam + " vs " + fixture.awayTeam + "\n " + fixture.date + " " + fixture.time + "\n " + fixture.resultUrl);
+        ics.push("DESCRIPTION:Squash Match " + fixture.homeTeam + " vs " + fixture.awayTeam + "\\n " + fixture.date + " " + fixture.time + "\\n" + fixture.resultUrl);
         ics.push("BEGIN:VALARM");
         ics.push("TRIGGER:-PT3H");
-        ics.push("ACTION:AUDIO");
+        ics.push("ACTION:DISPLAY");
+        ics.push("DESCRIPTION:" + summary);
         ics.push("END:VALARM");
         ics.push("BEGIN:VALARM");
         ics.push("TRIGGER:-P1D");
@@ -122,9 +125,9 @@ var monthIndexes = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT",
 function formatDate(dateString) {
     var dateStringParts = dateString.split("-");
     var day = dateStringParts[0];
-    var month = monthIndexes.indexOf(dateStringParts[1].toUpperCase());
+    var month = padTo2Chars(monthIndexes.indexOf(dateStringParts[1].toUpperCase()) + 1);
     var year = dateStringParts[2];
-    return year + (month < 10 ? "0" : "") + month + day;
+    return year + month + day;
 }
 
 function getTimeZoneIcsInfo() {
