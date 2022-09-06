@@ -1,7 +1,7 @@
 function initJQuery() {
-    var jQueryVersion="3.3.1";
+    var jQueryVersion="3.6.1";
     var a=document.createElement("script");
-    a.src="//ajax.googleapis.com/ajax/libs/jquery/"+jQueryVersion+"/jquery.js";
+    a.src="https://code.jquery.com/jquery-"+jQueryVersion+".js";
     a.type="text/javascript";
     document.getElementsByTagName("head")[0].appendChild(a);
 }
