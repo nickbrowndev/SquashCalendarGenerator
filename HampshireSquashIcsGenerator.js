@@ -1,5 +1,5 @@
 function initJQuery() {
-    var jQueryVersion="3.6.1";
+    var jQueryVersion="3.7.1";
     var a=document.createElement("script");
     a.src="https://code.jquery.com/jquery-"+jQueryVersion+".js";
     a.type="text/javascript";
